@@ -6,6 +6,11 @@
 		is king on vertical
 		is other piece is between two pieces
 		is king in range of piece (pawn, knight) 
+
+
+   REWRITE:
+      add all legal positions for all pieces except king
+      check if king is in one of them
 */
 const chessboard = [
    [" ", " ", " ", " ", " ", " ", " ", " "],
@@ -94,6 +99,7 @@ function isDiagonalCheck(piece) {
 
    antiDiagonalArr = getAntiDiagonalArrayOfPiece(piece);
 
+   // is king not in diagonal at all?
    if (
       mainDiagonalArr.indexOf("♔") === -1 &&
       antiDiagonalArr.indexOf("♔") === -1
@@ -101,12 +107,18 @@ function isDiagonalCheck(piece) {
       return false;
    }
 
-   if (
-      mainDiagonalArr.filter((e) => e !== " ").length > 2 ||
-      antiDiagonalArr.filter((e) => e !== " ").length > 2
-   ) {
-      return true;
+   // if (
+      //    mainDiagonalArr.filter((e) => e !== " ").length > 2 ||
+      //    antiDiagonalArr.filter((e) => e !== " ").length > 2
+      // ) {
+         //    return true;
+         // }
+         
+   // is king in check
+   if (mainDiagonalArr.indexOf("♔") !== -1) {
+      
    }
+
    return false;
 }
 
@@ -153,7 +165,7 @@ function getAntiDiagonalArrayOfPiece(piece) {
       currPos.x++;
       currPos.y--;
    }
-   console.log(arguments.callee.name, `anitDiagonalArr: `, antiDiagonalArr);
+   console.log(arguments.callee.name, `antiDiagonalArr: `, antiDiagonalArr);
 
    return antiDiagonalArr;
 }
